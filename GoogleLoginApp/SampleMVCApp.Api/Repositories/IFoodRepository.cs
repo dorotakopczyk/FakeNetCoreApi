@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SampleMVCApp.Api.Models;
 
@@ -7,13 +6,13 @@ namespace SampleMVCApp.Api.Repositories
 {
     public interface IFoodRepository
     {
-        FoodItem GetSingle(int id);
-        void Add(FoodItem item);
+        Food GetSingleFood(int id);
+        void Add(Food item);
         void Delete(int id);
-        FoodItem Update(int id, FoodItem item);
-        IQueryable<FoodItem> GetAll(QueryParameters queryParameters);
+        Food Update(int id, Food item);
+        IQueryable<Food> GetAll(QueryParameters queryParameters);
 
-        ICollection<FoodItem> MakeMeal();
+        ICollection<Food> MakeMeal();
         int Count();
 
         bool Save();

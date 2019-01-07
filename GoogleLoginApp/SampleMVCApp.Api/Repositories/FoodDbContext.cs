@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SampleMVCApp.Api.Models;
 
 namespace SampleMVCApp.Api.Repositories
@@ -12,7 +11,7 @@ namespace SampleMVCApp.Api.Repositories
 
         }
 
-        public DbSet<FoodItem> FoodItems { get; set; }
+        public DbSet<Food> FoodItems { get; set; }
 
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SampleMVCApp.Api.Models
 {
-    public class FoodItem
+    public class Food
     {
         public int Id { get; set; }
         public string Name { get; set; }

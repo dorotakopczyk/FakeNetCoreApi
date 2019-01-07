@@ -26,7 +26,7 @@ namespace SampleMVCApp.Api.Controllers.v1
         [HttpGet(Name = nameof(GetAllFoods))]
         public ActionResult GetAllFoods([FromQuery] QueryParameters queryParameters)
         {
-            List<FoodItem> foodItems = _foodRepository.GetAll(queryParameters).ToList();
+            List<Food> foodItems = _foodRepository.GetAll(queryParameters).ToList();
 
             var allItemCount = _foodRepository.Count();
 
@@ -47,7 +47,7 @@ namespace SampleMVCApp.Api.Controllers.v1
         [Route("{id:int}", Name = nameof(GetFoodItem))]
         public ActionResult GetFoodItem(int id)
         {
-            FoodItem foodItem = _foodRepository.GetSingle(id);
+            Food foodItem = _foodRepository.GetSingleFood(id);
 
             if (foodItem == null)
             {
@@ -59,7 +59,7 @@ namespace SampleMVCApp.Api.Controllers.v1
 
 
         [HttpPost(Name = nameof(AddFood))]
-        public ActionResult<FoodItem> AddFood([FromBody] FoodItem newFood)
+        public ActionResult<Food> AddFood([FromBody] Food newFood)
         {
             if (newFood == null)
             {
@@ -79,20 +79,20 @@ namespace SampleMVCApp.Api.Controllers.v1
                 throw new Exception("Creating a fooditem failed on save.");
             }
 
-            FoodItem newFoodItem = _foodRepository.GetSingle(newFood.Id);
+            Food newFoodItem = _foodRepository.GetSingleFood(newFood.Id);
 
             return CreatedAtRoute(nameof(GetFoodItem), new { id = newFoodItem.Id });
         }
 
         [HttpPatch("{id:int}", Name = nameof(PartiallyUpdateFood))]
-        public ActionResult<FoodItem> PartiallyUpdateFood(int id, [FromBody] JsonPatchDocument<FoodItem> patchDoc)
+        public ActionResult<Food> PartiallyUpdateFood(int id, [FromBody] JsonPatchDocument<Food> patchDoc)
         {
             if (patchDoc == null)
             {
                 return BadRequest();
             }
 
-            FoodItem existingEntity = _foodRepository.GetSingle(id);
+            Food existingEntity = _foodRepository.GetSingleFood(id);
 
             if (existingEntity == null)
             {
@@ -104,8 +104,8 @@ namespace SampleMVCApp.Api.Controllers.v1
                 return BadRequest(ModelState);
             }
 
-       
-            FoodItem updated = _foodRepository.Update(id, existingEntity);
+
+            Food updated = _foodRepository.Update(id, existingEntity);
 
             if (!_foodRepository.Save())
             {
@@ -119,7 +119,7 @@ namespace SampleMVCApp.Api.Controllers.v1
         [Route("{id:int}", Name = nameof(RemoveFood))]
         public ActionResult RemoveFood(int id)
         {
-            FoodItem foodItem = _foodRepository.GetSingle(id);
+            Food foodItem = _foodRepository.GetSingleFood(id);
 
             if (foodItem == null)
             {

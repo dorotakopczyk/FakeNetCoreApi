@@ -15,31 +15,31 @@ namespace SampleMVCApp.Api.Repositories
             _foodDbContext = foodDbContext;
         }
 
-        public FoodItem GetSingle(int id)
+        public Food GetSingleFood(int id)
         {
             return _foodDbContext.FoodItems.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Add(FoodItem item)
+        public void Add(Food item)
         {
             _foodDbContext.FoodItems.Add(item);
         }
 
         public void Delete(int id)
         {
-            FoodItem foodItem = GetSingle(id);
+            Food foodItem = GetSingleFood(id);
             _foodDbContext.FoodItems.Remove(foodItem);
         }
 
-        public FoodItem Update(int id, FoodItem item)
+        public Food Update(int id, Food item)
         {
             _foodDbContext.FoodItems.Update(item);
             return item;
         }
 
-        IQueryable<FoodItem> IFoodRepository.GetAll(QueryParameters queryParameters)
+        IQueryable<Food> IFoodRepository.GetAll(QueryParameters queryParameters)
         {
-            IQueryable<FoodItem> _allItems = _foodDbContext.FoodItems;
+            IQueryable<Food> _allItems = _foodDbContext.FoodItems;
 
             if (queryParameters.HasQuery())
             {
@@ -63,9 +63,9 @@ namespace SampleMVCApp.Api.Repositories
             return (_foodDbContext.SaveChanges() >= 0);
         }
 
-        public ICollection<FoodItem> MakeMeal()
+        public ICollection<Food> MakeMeal()
         {
-            List<FoodItem> toReturn = new List<FoodItem>();
+            List<Food> toReturn = new List<Food>();
 
             toReturn.Add(GetRandomItem("Main"));
             toReturn.Add(GetRandomItem("Dessert"));
@@ -73,7 +73,7 @@ namespace SampleMVCApp.Api.Repositories
             return toReturn;
         }
 
-        private FoodItem GetRandomItem(string type)
+        private Food GetRandomItem(string type)
         {
             return _foodDbContext.FoodItems
                 .Where(x => x.Type == type)
