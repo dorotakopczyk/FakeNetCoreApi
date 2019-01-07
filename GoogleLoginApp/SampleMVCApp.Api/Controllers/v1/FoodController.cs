@@ -38,14 +38,7 @@ namespace SampleMVCApp.Api.Controllers.v1
                 totalPages = queryParameters.GetTotalPages(allItemCount)
             };
 
-            Response.Headers.Add("X-Pagination",
-                Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata));
-
-            //var links = CreateLinksForCollection(queryParameters, allItemCount);
-
-            //var toReturn = foodItems.Select(x => ExpandSingleFoodItem(x));
-
-            return Ok();
+            return Ok(foodItems);
         }
 
 
