@@ -11,7 +11,7 @@ namespace SampleMVCApp.Api.Controllers.v2
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok("2.0");
+            return Ok("2.0. This version is still a work in progress, use 1.0.");
         }
     }
 }
