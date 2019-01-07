@@ -13,7 +13,7 @@ namespace SampleMVCApp.Api.Repositories
         FoodItem Update(int id, FoodItem item);
         IQueryable<FoodItem> GetAll(QueryParameters queryParameters);
 
-        ICollection<FoodItem> GetRandomMeal();
+        ICollection<FoodItem> MakeMeal();
         int Count();
 
         bool Save();

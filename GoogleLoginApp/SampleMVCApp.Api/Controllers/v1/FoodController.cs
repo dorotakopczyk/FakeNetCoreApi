@@ -44,8 +44,8 @@ namespace SampleMVCApp.Api.Controllers.v1
 
 
         [HttpGet]
-        [Route("{id:int}", Name = nameof(GetSingleFood))]
-        public ActionResult GetSingleFood(int id)
+        [Route("{id:int}", Name = nameof(GetFoodItem))]
+        public ActionResult GetFoodItem(int id)
         {
             FoodItem foodItem = _foodRepository.GetSingle(id);
 
@@ -81,7 +81,7 @@ namespace SampleMVCApp.Api.Controllers.v1
 
             FoodItem newFoodItem = _foodRepository.GetSingle(newFood.Id);
 
-            return CreatedAtRoute(nameof(GetSingleFood), new { id = newFoodItem.Id });
+            return CreatedAtRoute(nameof(GetFoodItem), new { id = newFoodItem.Id });
         }
 
         [HttpPatch("{id:int}", Name = nameof(PartiallyUpdateFood))]

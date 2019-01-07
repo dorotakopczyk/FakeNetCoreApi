@@ -63,11 +63,10 @@ namespace SampleMVCApp.Api.Repositories
             return (_foodDbContext.SaveChanges() >= 0);
         }
 
-        public ICollection<FoodItem> GetRandomMeal()
+        public ICollection<FoodItem> MakeMeal()
         {
             List<FoodItem> toReturn = new List<FoodItem>();
 
-            toReturn.Add(GetRandomItem("Starter"));
             toReturn.Add(GetRandomItem("Main"));
             toReturn.Add(GetRandomItem("Dessert"));
 
