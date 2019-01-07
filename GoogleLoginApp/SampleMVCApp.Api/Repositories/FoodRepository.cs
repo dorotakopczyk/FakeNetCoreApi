@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SampleMVCApp.Api.Models;
+using SampleMVCApp.Api.Utilities;
 
 namespace SampleMVCApp.Api.Repositories
 {
@@ -36,10 +37,9 @@ namespace SampleMVCApp.Api.Repositories
             return item;
         }
 
-        public IQueryable<FoodItem> GetAll(QueryParameters queryParameters)
+        IQueryable<FoodItem> IFoodRepository.GetAll(QueryParameters queryParameters)
         {
-            IQueryable<FoodItem> _allItems = _foodDbContext.FoodItems.OrderBy(queryParameters.OrderBy,
-              queryParameters.IsDescending());
+            IQueryable<FoodItem> _allItems = _foodDbContext.FoodItems;
 
             if (queryParameters.HasQuery())
             {
