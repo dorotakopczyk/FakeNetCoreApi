@@ -1,1 +1,2 @@
-# GoogleLoginApp
+# This is a sample NetCore API 
+
