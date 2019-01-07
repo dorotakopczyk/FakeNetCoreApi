@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
+using SampleMVCApp.Api.Models;
+using SampleMVCApp.Api.Repositories;
+
 namespace SampleMVCApp.Api.Services
 {
-    public class DataSeeder
+    public class DataSeeder : IDataSeeder
     {
         public async Task Initialize(FoodDbContext context)
         {

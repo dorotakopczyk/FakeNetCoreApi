@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using SampleMVCApp.Api.Models;
 
 namespace SampleMVCApp.Api.Utilities
@@ -29,7 +30,10 @@ namespace SampleMVCApp.Api.Utilities
         {
             if (!String.IsNullOrEmpty(queryParameters.OrderBy))
             {
-                return queryParameters.OrderBy.Split(' ').Last().ToLowerInvariant().StartsWith("desc");
+                var x = queryParameters.OrderBy.Split(' ');//.Last().ToLowerInvariant().StartsWith("desc");
+                #pragma warning disable RECS0063 // Warns when a culture-aware 'StartsWith' call is used by default.
+                return Enumerable.Last(x.ToList()).ToLowerInvariant().StartsWith("desc");
+                #pragma warning restore RECS0063 // Warns when a culture-aware 'StartsWith' call is used by default.
             }
             return false;
         }
